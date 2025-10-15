@@ -25,10 +25,40 @@ const srtop = ScrollReveal({
     reset: true
 });
 
+/* SCROLL PROJECTS */
+srtop.reveal('.projects .heading',{delay: 200});
+srtop.reveal('.projects .quote',{delay: 300});
+srtop.reveal('.projects .project-card',{interval: 200});
+
 /* SCROLL EXPERIENCE */
 srtop.reveal('.experience .timeline',{delay: 400});
-srtop.reveal('.experience .timeline .container',{interval: 400}); 
+srtop.reveal('.experience .timeline .container',{interval: 400});
 
+/* PROJECT CARD ANIMATIONS */
+$(document).ready(function() {
+    $('.project-card').each(function(index) {
+        $(this).css('animation-delay', (index * 0.1) + 's');
+    });
+
+    $('.project-card').hover(
+        function() {
+            $(this).find('.project-tags .tag').each(function(i) {
+                $(this).css('animation-delay', (i * 0.05) + 's');
+            });
+        }
+    );
+});
+
+/* SMOOTH SCROLL FOR ANCHOR LINKS */
+$('a[href^="#"]').on('click', function(e) {
+    var target = this.hash;
+    if(target) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $(target).offset().top - 70
+        }, 800, 'swing');
+    }
+});
 
 // Start of Tawk.to Live Chat
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
